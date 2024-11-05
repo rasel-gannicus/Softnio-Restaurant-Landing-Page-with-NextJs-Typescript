@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Bebas_Neue, Roboto } from 'next/font/google'
+import Navbar from "./components/shared/Navbar/Navbar";
 
 export const bebasNeue = Bebas_Neue({
   weight: '400', // Bebas Neue only comes in regular weight
@@ -40,6 +41,7 @@ export default function RootLayout({
       <body
         className={`${roboto.className}`}
       >
+        <Navbar />
         {children}
       </body>
     </html>
