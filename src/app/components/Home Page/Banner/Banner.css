@@ -1,0 +1,6 @@
+.banner-div-main {
+  background-image: url("/banner-bg.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
