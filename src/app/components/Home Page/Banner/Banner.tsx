@@ -8,16 +8,16 @@ const Banner = () => {
 <div className="bg-gradient-to-r from-[#BD1F17] to-[#8E1B0F] bg-opacity-100 z-50">
   <div className="pb-[160px] pt-[160px] bg-[url('/banner-bg.png')] bg-opacity-50">
  
-        <div className="flex justify-center items-center max-w-[1320px] w-[90%] mx-auto relative ">
+        <div className="flex justify-center items-center flex-col lg:flex-row max-w-[1320px] w-[90%] mx-auto relative ">
           {/* --- Banner left Side --- */}
-          <div className="text-white flex flex-col justify-center items-start gap-6  w-full h-full ">
-            <div className="absolute top-10 px-5 py-3   left-0 bg-[rgba(189,31,23,0.43)] xl:min-w-[850px] z-20 ">
-              <h2 className="uppercase text-8xl  leading-tight Font-bebasNeue   ">
+          <div className="text-white flex flex-col justify-center items-start  gap-6  w-full h-full ">
+            <div className="lg:absolute lg:top-10 lg:left-0 lg:px-5 py-3 lg:bg-[rgba(189,31,23,0.43)] xl:min-w-[850px] z-20 ">
+              <h2 className="uppercase  text-4xl lg:text-8xl  leading-tight Font-bebasNeue   ">
                 Taste the authentic <br />
                 Saudi cuisine
               </h2>
             </div>
-            <p className="mt-80 font-extralight text-gray-100">
+            <p className="lg:mt-80 font-extralight text-gray-100">
               Among the best Saudi chefs in the world,
               <br />
               serving you something beyond flavor.

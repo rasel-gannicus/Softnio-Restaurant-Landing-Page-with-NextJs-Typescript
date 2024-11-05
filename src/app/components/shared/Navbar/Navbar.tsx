@@ -6,6 +6,7 @@ import Image from "next/image";
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -19,6 +20,10 @@ const Navbar = () => {
     };
   }, []);
 
+  const handleToggle = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -26,73 +31,73 @@ const Navbar = () => {
       }`}
     >
       <nav className="flex justify-between items-center max-w-[1320px] mx-auto py-4 px-6">
-        <div className="navbar-brand flex justify-center items-center gap-10">
-          <Image src={logo} alt="Restaurant Logo" className="" />
-          <ul className="navbar-nav flex space-x-6 text-sm">
-            <li
-              className={`nav-item ${
-                router.pathname === "/"
-                  ? "text-white"
-                  : "text-gray-300 hover:text-white"
-              }`}
-            >
-              <a href="/">Home</a>
-            </li>
-            <li
-              className={`nav-item ${
-                router.pathname === "/about"
-                  ? "text-white"
-                  : "text-gray-300 hover:text-white"
-              }`}
-            >
-              <a href="/about">About</a>
-            </li>
-            <li
-              className={`nav-item ${
-                router.pathname === "/about"
-                  ? "text-white"
-                  : "text-gray-300 hover:text-white"
-              }`}
-            >
-              <a href="/about">Portfolio</a>
-            </li>
-            <li
-              className={`nav-item ${
-                router.pathname === "/about"
-                  ? "text-white"
-                  : "text-gray-300 hover:text-white"
-              }`}
-            >
-              <a href="/about">Clients</a>
-            </li>
-            <li
-              className={`nav-item ${
-                router.pathname === "/about"
-                  ? "text-white"
-                  : "text-gray-300 hover:text-white"
-              }`}
-            >
-              <a href="/about">Blog</a>
-            </li>
-            <li
-              className={`nav-item ${
-                router.pathname === "/about"
-                  ? "text-white"
-                  : "text-gray-300 hover:text-white"
-              }`}
-            >
-              <a href="/about">Contact</a>
-            </li>
+        <div className="navbar-brand flex justify-center items-center gap-8">
+          <Image src={logo} alt="Restaurant Logo" className="w-[200px] " />
+          <ul className="hidden md:flex space-x-6 font-extralight text-sm">
+            {[
+              { path: "/", label: "Home" },
+              { path: "/about", label: "About" },
+              { path: "/portfolio", label: "Portfolio" },
+              { path: "/clients", label: "Clients" },
+              { path: "/blog", label: "Blog" },
+              { path: "/contact", label: "Contact" },
+            ].map((item) => (
+              <li
+                key={item.path}
+                className={`nav-item ${
+                  router.pathname === item.path
+                    ? "text-white"
+                    : "hover:text-gray-300 text-white"
+                }`}
+              >
+                <a href={item.path}>{item.label}</a>
+              </li>
+            ))}
           </ul>
         </div>
         {/* --- Navbar Right --- */}
-        <div className="">
-            <button className="btn-primary">Book a table</button>
+        <div className="hidden md:block">
+          <button className="btn-primary">Book a table</button>
         </div>
-        <button className="navbar-toggler block md:hidden">
-          <span className="navbar-toggler-icon block w-6 h-1 bg-white my-1"></span>
+        <button
+          className="navbar-toggler md:hidden"
+          onClick={handleToggle}
+        >
+          <span className="block w-6 h-1 bg-white my-1"></span>
+          <span className="block w-6 h-1 bg-white my-1"></span>
+          <span className="block w-6 h-1 bg-white my-1"></span>
         </button>
       </nav>
+
+      {/* Mobile Slide-In Menu */}
+      <div
+        className={`fixed top-0 left-0 h-full w-64 bg-gray-800 transform transition-transform duration-300 ${
+          isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="flex flex-col items-start p-4">
+          {[
+            { path: "/", label: "Home" },
+            { path: "/about", label: "About" },
+            { path: "/portfolio", label: "Portfolio" },
+            { path: "/clients", label: "Clients" },
+            { path: "/blog", label: "Blog" },
+            { path: "/contact", label: "Contact" },
+          ].map((item) => (
+            <a
+              key={item.path}
+              href={item.path}
+              className={`py-2 px-4 w-full text-white ${
+                router.pathname === item.path ? "font-bold" : "font-normal"
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {item.label}
+            </a>
+          ))}
+          <button className="btn-primary mt-4">Book a table</button>
+        </div>
+      </div>
     </header>
   );
 };
