@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Bebas_Neue, Roboto } from 'next/font/google'
+
+export const bebasNeue = Bebas_Neue({
+  weight: '400', // Bebas Neue only comes in regular weight
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -11,6 +18,11 @@ const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
+});
+
+const roboto = Roboto({
+  weight: ['400', '500', '700'], // Choose weights you need
+  subsets: ['latin'], // Optimize loading performance
 });
 
 export const metadata: Metadata = {
@@ -26,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${roboto.className}`}
       >
         {children}
       </body>
