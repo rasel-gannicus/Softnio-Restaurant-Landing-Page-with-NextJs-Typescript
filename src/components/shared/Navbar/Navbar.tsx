@@ -6,22 +6,16 @@ import { useEffect, useRef, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdRestaurantMenu } from "react-icons/md";
 import MobileSidbar from "./Mobile Sidebar/MobileSidbar";
+import { menuLink } from "./NavLink";
+
 
 // --- defining the menu link type
 export interface MenuLink {
   path: string;
   label: string;
-  icon?: React.ReactNode;
+  icons?: () => JSX.Element;
 }
 
-const menuLink: MenuLink[] = [
-  { path: "/", label: "Home" },
-  { path: "/about", label: "About" },
-  { path: "/#", label: "Portfolio" },
-  { path: "/#", label: "Clients" },
-  { path: "/#", label: "Blog" },
-  { path: "/#", label: "Contact" },
-];
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -85,7 +79,7 @@ const Navbar = () => {
             {menuLink.map((item) => (
               <li
                 key={item.label}
-                className={`nav-item text-white`}
+                className={`nav-item text-gray-200`}
               >
                 <Link href={item.path}>{item.label}</Link>
               </li>

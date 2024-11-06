@@ -14,9 +14,10 @@ const MobileSidbar = ({sidebarRef, isMobileMenuOpen, setIsMobileMenuOpen, menuLi
           <Link
             key={item.label}
             href={item.path}
-            className={`py-2 px-4 w-full text-white`}
+            className={`py-2 px-4 w-full text-gray-200 flex justify-start items-center gap-3`}
             onClick={() => setIsMobileMenuOpen(false)}
           >
+            {item.icons ? item.icons() : null}
             {item.label}
           </Link>
         ))}
