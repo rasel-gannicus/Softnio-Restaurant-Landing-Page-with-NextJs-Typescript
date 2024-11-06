@@ -1,14 +1,17 @@
 "use client";
-import { useRouter } from "next/navigation";
-import React, { useState, useEffect } from "react";
 import logo from "@/assets/img/logo.png";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const router = useRouter();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); //--- toggling mobile menu
+  const router: any = useRouter();
+  const toggleButtonRef: any = useRef(null);
+  const sidebarRef: any = useRef(null);
 
+  // --- making navbar sticky
   useEffect(() => {
     const handleScroll = () => {
       setIsSticky(window.pageYOffset > 0);
@@ -20,7 +23,31 @@ const Navbar = () => {
     };
   }, []);
 
-  const handleToggle = () => {
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      // Check if the click is outside both the sidebar and the toggle button
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target) &&
+        toggleButtonRef.current &&
+        !toggleButtonRef.current.contains(event.target)
+      ) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    // Adding event listener to handle clicks outside the navbar
+    document.addEventListener("click", handleClickOutside);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  //--- toggling mobile menu
+  const handleToggle = (e: any) => {
+    e.stopPropagation();
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
@@ -61,7 +88,8 @@ const Navbar = () => {
         </div>
         <button
           className="navbar-toggler md:hidden"
-          onClick={handleToggle}
+          onClick={(e) => handleToggle(e)}
+          ref={toggleButtonRef}
         >
           <span className="block w-6 h-1 bg-white my-1"></span>
           <span className="block w-6 h-1 bg-white my-1"></span>
@@ -71,6 +99,7 @@ const Navbar = () => {
 
       {/* Mobile Slide-In Menu */}
       <div
+        ref={sidebarRef}
         className={`fixed top-0 left-0 h-full w-64 bg-gray-800 transform transition-transform duration-300 ${
           isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}

@@ -5,9 +5,8 @@ import "./Banner.css";
 
 const Banner = () => {
   return (
-<div className="bg-gradient-to-r from-[#BD1F17] to-[#8E1B0F] bg-opacity-100 z-50">
-  <div className="pb-[160px] pt-[160px] bg-[url('/banner-bg.png')] bg-opacity-50">
- 
+    <div className="bg-gradient-to-r from-[#BD1F17] to-[#8E1B0F] bg-opacity-100 z-50">
+      <div className="pb-[160px] pt-[160px] bg-[url('/banner-bg.png')] bg-opacity-50">
         <div className="flex justify-center items-center flex-col gap-y-10 lg:flex-row max-w-[1320px] w-[90%] mx-auto relative ">
           {/* --- Banner left Side --- */}
           <div className="text-white flex flex-col justify-center items-start  gap-6  w-full h-full ">
