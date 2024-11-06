@@ -5,8 +5,11 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdRestaurantMenu } from "react-icons/md";
+import MobileSidbar from "./Mobile Sidebar/MobileSidbar";
+import Link from "next/link";
 
-interface MenuLink {
+// --- defining the menu link type
+export interface MenuLink {
   path: string;
   label: string;
   icon?: React.ReactNode;
@@ -25,6 +28,8 @@ const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); //--- toggling mobile menu
   const router: any = useRouter();
+
+  // --- marking the sidebar and toggle button as ref so that we will know if the user clicked on them or not.
   const toggleButtonRef: any = useRef(null);
   const sidebarRef: any = useRef(null);
 
@@ -88,7 +93,7 @@ const Navbar = () => {
                     : "hover:text-gray-300 text-white"
                 }`}
               >
-                <a href={item.path}>{item.label}</a>
+                <Link href={item.path}>{item.label}</Link>
               </li>
             ))}
           </ul>
@@ -115,31 +120,8 @@ const Navbar = () => {
         </button>
       </nav>
 
-      {/* Mobile Slide-In Menu */}
-      <div
-        ref={sidebarRef}
-        className={`fixed top-0 left-0 h-full w-64 bg-gray-800 transform transition-transform duration-300 flex flex-col justify-center items-center ${
-          isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
-        <div className="flex flex-col items-start p-4 ">
-          {menuLink.map((item: MenuLink) => (
-            <a
-              key={item.path}
-              href={item.path}
-              className={`py-2 px-4 w-full text-white ${
-                router.pathname === item.path ? "font-bold" : "font-normal"
-              }`}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {item.label}
-            </a>
-          ))}
-          <button className="btn-primary-small mt-4 rounded-full">
-            Book a table
-          </button>
-        </div>
-      </div>
+      {/* --- Mobile sidebar menu --- */}
+      <MobileSidbar sidebarRef={sidebarRef} isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} menuLink={menuLink} router={router} />
     </header>
   );
 };
