@@ -2,6 +2,7 @@ import bannerSideImgMain from "@/assets/img/banner side img.png";
 import bannerSideImgFlower from "@/assets/img/flower.png";
 import Image from "next/image";
 import "./Banner.css";
+import { ThemeToggle } from "@/utils/DarkMode/ThemeToggle";
 
 const Banner = () => {
   return (
@@ -22,6 +23,7 @@ const Banner = () => {
               serving you something beyond flavor.
             </p>
             <button className="btn-primary">Explore Menu</button>
+            <ThemeToggle />
           </div>
 
           {/* --- Banner right Side --- */}

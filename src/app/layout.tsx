@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Bebas_Neue, Roboto } from "next/font/google";
 import Navbar from "../components/shared/Navbar/Navbar";
+import { ThemeProvider } from "@/utils/DarkMode/ThemeContext";
 
 export const bebasNeue = Bebas_Neue({
   weight: "400", // Bebas Neue only comes in regular weight
@@ -22,8 +23,8 @@ const geistMono = localFont({
 });
 
 const roboto = Roboto({
-  weight: ["400", "500", "700"], // Choose weights you need
-  subsets: ["latin"], // Optimize loading performance
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -39,8 +40,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${roboto.className}`}>
-        <Navbar />
-        {children}
+        <ThemeProvider>
+          <Navbar />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
