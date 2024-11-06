@@ -1,12 +1,11 @@
 "use client";
 import logo from "@/assets/img/logo.png";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdRestaurantMenu } from "react-icons/md";
 import MobileSidbar from "./Mobile Sidebar/MobileSidbar";
-import Link from "next/link";
 
 // --- defining the menu link type
 export interface MenuLink {
@@ -18,16 +17,15 @@ export interface MenuLink {
 const menuLink: MenuLink[] = [
   { path: "/", label: "Home" },
   { path: "/about", label: "About" },
-  { path: "/portfolio", label: "Portfolio" },
-  { path: "/clients", label: "Clients" },
-  { path: "/blog", label: "Blog" },
-  { path: "/contact", label: "Contact" },
+  { path: "/#", label: "Portfolio" },
+  { path: "/#", label: "Clients" },
+  { path: "/#", label: "Blog" },
+  { path: "/#", label: "Contact" },
 ];
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); //--- toggling mobile menu
-  const router: any = useRouter();
 
   // --- marking the sidebar and toggle button as ref so that we will know if the user clicked on them or not.
   const toggleButtonRef: any = useRef(null);
@@ -86,22 +84,21 @@ const Navbar = () => {
           <ul className="hidden md:flex space-x-6 font-extralight text-sm">
             {menuLink.map((item) => (
               <li
-                key={item.path}
-                className={`nav-item ${
-                  router.pathname === item.path
-                    ? "text-white"
-                    : "hover:text-gray-300 text-white"
-                }`}
+                key={item.label}
+                className={`nav-item text-white`}
               >
                 <Link href={item.path}>{item.label}</Link>
               </li>
             ))}
           </ul>
         </div>
+
         {/* --- Navbar Right --- */}
         <div className="hidden md:block">
           <button className="btn-primary">Book a table</button>
         </div>
+
+        {/* --- Mobile Menu Toggler --- */}
         <button
           className="navbar-toggler md:hidden  relative  h-7 w-7 "
           onClick={(e) => handleToggle(e)}
@@ -121,7 +118,7 @@ const Navbar = () => {
       </nav>
 
       {/* --- Mobile sidebar menu --- */}
-      <MobileSidbar sidebarRef={sidebarRef} isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} menuLink={menuLink} router={router} />
+      <MobileSidbar sidebarRef={sidebarRef} isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} menuLink={menuLink} />
     </header>
   );
 };

@@ -12,11 +12,9 @@ const MobileSidbar = ({sidebarRef, isMobileMenuOpen, setIsMobileMenuOpen, menuLi
       <div className="flex flex-col items-start p-4 ">
         {menuLink.map((item: MenuLink) => (
           <Link
-            key={item.path}
+            key={item.label}
             href={item.path}
-            className={`py-2 px-4 w-full text-white ${
-              router.pathname === item.path ? "font-bold" : "font-normal"
-            }`}
+            className={`py-2 px-4 w-full text-white`}
             onClick={() => setIsMobileMenuOpen(false)}
           >
             {item.label}

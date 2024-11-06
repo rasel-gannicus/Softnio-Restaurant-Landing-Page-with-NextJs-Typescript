@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { Bebas_Neue, Roboto } from 'next/font/google'
-import Navbar from "./components/shared/Navbar/Navbar";
+import { Bebas_Neue, Roboto } from "next/font/google";
+import Navbar from "../components/shared/Navbar/Navbar";
 
 export const bebasNeue = Bebas_Neue({
-  weight: '400', // Bebas Neue only comes in regular weight
-  subsets: ['latin'],
-  display: 'swap',
-})
+  weight: "400", // Bebas Neue only comes in regular weight
+  subsets: ["latin"],
+  display: "swap",
+});
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -22,8 +22,8 @@ const geistMono = localFont({
 });
 
 const roboto = Roboto({
-  weight: ['400', '500', '700'], // Choose weights you need
-  subsets: ['latin'], // Optimize loading performance
+  weight: ["400", "500", "700"], // Choose weights you need
+  subsets: ["latin"], // Optimize loading performance
 });
 
 export const metadata: Metadata = {
@@ -38,9 +38,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${roboto.className}`}
-      >
+      <body className={`${roboto.className}`}>
         <Navbar />
         {children}
       </body>
