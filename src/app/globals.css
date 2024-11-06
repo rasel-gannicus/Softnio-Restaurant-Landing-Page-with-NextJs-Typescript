@@ -16,3 +16,6 @@
 .btn-primary {
   @apply bg-[#FEC000] text-black  py-2 px-4 uppercase text-sm ;
 }
+.btn-primary-small {
+  @apply bg-[#FEC000] text-black font-semibold py-2 px-3 uppercase text-xs ;
+}
