@@ -7,7 +7,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { MdRestaurantMenu } from "react-icons/md";
 import MobileSidbar from "./Mobile Sidebar/MobileSidbar";
 import { menuLink } from "./NavLink";
-
+import { ThemeToggle } from "@/utils/DarkMode/ThemeToggle";
 
 // --- defining the menu link type
 export interface MenuLink {
@@ -16,7 +16,6 @@ export interface MenuLink {
   icons?: () => JSX.Element;
 }
 
-
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); //--- toggling mobile menu
@@ -24,6 +23,7 @@ const Navbar = () => {
   // --- marking the sidebar and toggle button as ref so that we will know if the user clicked on them or not.
   const toggleButtonRef: any = useRef(null);
   const sidebarRef: any = useRef(null);
+  const themeToggleRef: any = useRef(null);
 
   // --- making navbar sticky
   useEffect(() => {
@@ -39,12 +39,14 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleClickOutside = (event: any) => {
-      // Check if the click is outside both the sidebar and the toggle button
+      // Check if the click is outside the sidebar and the toggle button
       if (
         sidebarRef.current &&
         !sidebarRef.current.contains(event.target) &&
         toggleButtonRef.current &&
-        !toggleButtonRef.current.contains(event.target)
+        !toggleButtonRef.current.contains(event.target) &&
+        themeToggleRef.current &&
+        !themeToggleRef.current.contains(event.target)
       ) {
         setIsMobileMenuOpen(false);
       }
@@ -76,10 +78,7 @@ const Navbar = () => {
           <Image src={logo} alt="Restaurant Logo" className="w-[200px] " />
           <ul className="hidden md:flex space-x-6 font-extralight text-sm">
             {menuLink.map((item) => (
-              <li
-                key={item.label}
-                className={`nav-item text-gray-200`}
-              >
+              <li key={item.label} className={`nav-item text-gray-200`}>
                 <Link href={item.path}>{item.label}</Link>
               </li>
             ))}
@@ -87,7 +86,8 @@ const Navbar = () => {
         </div>
 
         {/* --- Navbar Right --- */}
-        <div className="hidden md:block">
+        <div className="hidden md:flex justify-center items-center gap-2">
+          <ThemeToggle />
           <button className="btn-primary">Book a table</button>
         </div>
 
@@ -111,7 +111,13 @@ const Navbar = () => {
       </nav>
 
       {/* --- Mobile sidebar menu --- */}
-      <MobileSidbar sidebarRef={sidebarRef} isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} menuLink={menuLink} />
+      <MobileSidbar
+        sidebarRef={sidebarRef}
+        themeToggleRef={themeToggleRef}
+        isMobileMenuOpen={isMobileMenuOpen}
+        setIsMobileMenuOpen={setIsMobileMenuOpen}
+        menuLink={menuLink}
+      />
     </header>
   );
 };

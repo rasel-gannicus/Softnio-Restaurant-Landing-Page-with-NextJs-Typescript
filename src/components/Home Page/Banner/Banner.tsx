@@ -2,11 +2,10 @@ import bannerSideImgMain from "@/assets/img/banner side img.png";
 import bannerSideImgFlower from "@/assets/img/flower.png";
 import Image from "next/image";
 import "./Banner.css";
-import { ThemeToggle } from "@/utils/DarkMode/ThemeToggle";
 
 const Banner = () => {
   return (
-    <div className="bg-gradient-to-r from-[#BD1F17] to-[#8E1B0F] bg-opacity-100 z-50">
+    <div className="bg-gradient-to-r from-[#BD1F17] to-[#8E1B0F] dark:bg-gradient-to-r dark:from-slate-900 dark:to-black bg-opacity-100 z-50">
       <div className="pb-[160px] pt-[160px] bg-[url('/banner-bg.png')] bg-opacity-50">
         <div className="flex justify-center items-center flex-col gap-y-10 lg:flex-row max-w-[1320px] w-[90%] mx-auto relative ">
           {/* --- Banner left Side --- */}
@@ -23,7 +22,6 @@ const Banner = () => {
               serving you something beyond flavor.
             </p>
             <button className="btn-primary">Explore Menu</button>
-            <ThemeToggle />
           </div>
 
           {/* --- Banner right Side --- */}

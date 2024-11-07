@@ -1,7 +1,14 @@
 import Link from "next/link";
 import { MenuLink } from "../Navbar";
+import { ThemeToggle } from "@/utils/DarkMode/ThemeToggle";
 
-const MobileSidbar = ({sidebarRef, isMobileMenuOpen, setIsMobileMenuOpen, menuLink, router}: any) => {
+const MobileSidbar = ({
+  sidebarRef,
+  isMobileMenuOpen,
+  setIsMobileMenuOpen,
+  menuLink,
+  themeToggleRef,
+}: any) => {
   return (
     <div
       ref={sidebarRef}
@@ -9,7 +16,10 @@ const MobileSidbar = ({sidebarRef, isMobileMenuOpen, setIsMobileMenuOpen, menuLi
         isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >
-      <div className="flex flex-col items-start p-4 ">
+      <div ref={themeToggleRef} className="absolute top-2 left-2">
+        <ThemeToggle />
+      </div>
+      <div className="flex flex-col items-start p-4 gap-1 ">
         {menuLink.map((item: MenuLink) => (
           <Link
             key={item.label}

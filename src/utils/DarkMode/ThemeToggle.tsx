@@ -1,6 +1,8 @@
 "use client";
 import { useContext } from "react";
 import { ThemeContext } from "./ThemeContext";
+import { IoSunny } from "react-icons/io5";
+import { FaMoon } from "react-icons/fa";
 
 export const ThemeToggle: React.FC = () => {
   const themeContext = useContext(ThemeContext);
@@ -9,40 +11,18 @@ export const ThemeToggle: React.FC = () => {
     throw new Error("ThemeToggle must be used within a ThemeProvider");
   }
 
-  const { theme, setTheme } = themeContext;
+  const { theme, toggleTheme } = themeContext;
 
   return (
-    <div className="space-x-2">
-      <button
-        onClick={() => setTheme("light")}
-        className={`p-2 rounded ${
-          theme === "light"
-            ? "bg-blue-500 text-white"
-            : "bg-gray-200 dark:bg-gray-800"
-        }`}
-      >
-        Light Mode
-      </button>
-      <button
-        onClick={() => setTheme("dark")}
-        className={`p-2 rounded ${
-          theme === "dark"
-            ? "bg-blue-500 text-white"
-            : "bg-gray-200 dark:bg-gray-800"
-        }`}
-      >
-        Dark Mode
-      </button>
-      <button
-        onClick={() => setTheme("system")}
-        className={`p-2 rounded ${
-          theme === "system"
-            ? "bg-blue-500 text-white"
-            : "bg-gray-200 dark:bg-gray-800"
-        }`}
-      >
-        System Preference
-      </button>
-    </div>
+    <button
+      onClick={toggleTheme}
+      className="p-2 bg-slate-900 dark:bg-gray-100 rounded"
+    >
+      {theme === "dark" ? (
+        <IoSunny className="w-5 h-5 text-orange-400" />
+      ) : (
+        <FaMoon className=" w-5 h-5 text-white" />
+      )}
+    </button>
   );
 };
