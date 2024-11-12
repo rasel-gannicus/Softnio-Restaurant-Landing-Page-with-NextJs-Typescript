@@ -1,10 +1,12 @@
+"use client";
 import Image from "next/image";
 import aboutImg from "@/assets/img/about img 1.1 .png";
 import marketExperienceImg from "@/assets/img/About section Market Place.png";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
 const About = () => {
   return (
-    <div className="my-20 max-w-[1320px] w-[90%] mx-auto ">
+    <div className="my-20 max-w-[1320px] w-[90%] mx-auto flex justify-between items-start gap-4">
       {/* --- About Left Side --- */}
       <div className="">
         <div className="w-[617px] h-[460px] relative ">
@@ -22,7 +24,22 @@ const About = () => {
       </div>
 
       {/* --- About Right Side --- */}
-      <div className=""></div>
+      <div className="">
+        <Tabs>
+          <TabList>
+            <Tab>Title 1</Tab>
+            <Tab>Title 2</Tab>
+            <Tab>Title 3</Tab>
+          </TabList>
+
+          <TabPanel>
+            <h2>Any content 1</h2>
+          </TabPanel>
+          <TabPanel>
+            <h2>Any content 2</h2>
+          </TabPanel>
+        </Tabs>
+      </div>
     </div>
   );
 };

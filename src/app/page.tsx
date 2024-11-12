@@ -1,5 +1,6 @@
 import About from "@/components/Home Page/About/About";
 import Banner from "../components/Home Page/Banner/Banner";
+import 'react-tabs/style/react-tabs.css';
 
 export default function Home() {
   return (

@@ -3,6 +3,7 @@ import bannerSideImgFlower from "@/assets/img/flower.png";
 import Image from "next/image";
 import "./Banner.css";
 
+
 const Banner = () => {
   return (
     <div className="bg-gradient-to-r from-[#BD1F17] to-[#8E1B0F] dark:bg-gradient-to-r dark:from-slate-900 dark:to-black bg-opacity-100 z-50">
