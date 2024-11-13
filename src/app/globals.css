@@ -20,14 +20,17 @@
   @apply bg-[#FEC000] text-black font-semibold py-2 px-3 uppercase text-xs ;
 }
 
+
+/* -----------------------------------------------------------------------------
+    Custom style for react-tabs
+----------------------------------------------------------------------------- */
+
 .react-tabs {
   -webkit-tap-highlight-color: transparent;
 }
-
 .react-tabs__tab-list {
   border-bottom: 2px solid #B52A1E !important;
   margin: 0 0 10px;
-  padding: 0;
 }
 
 .react-tabs__tab {
@@ -37,25 +40,17 @@
   bottom: -1px;
   position: relative;
   list-style: none;
-  padding: 6px 12px;
+  padding: 6px 22px !important;
   cursor: pointer;
+  font-size: smaller !important;
 }
 
 .react-tabs__tab--selected {
   background: #fff;
-  border-color: #B52A1E !important;
+  border-color: #B52B1D !important;
   color: white !important;
   border-radius: 0px 0px 0 0 !important;
-  background: #B52A1E !important ;
-}
-
-.react-tabs__tab--disabled {
-  color: GrayText;
-  cursor: default;
-}
-
-.react-tabs__tab:focus {
-  outline: none !important;
+  background: #B52B1D !important ;
 }
 
 .react-tabs__tab:focus:after {
@@ -66,12 +61,4 @@
   right: -4px;
   bottom: 0px !important;
   background: #B52A1E !important ;
-}
-
-.react-tabs__tab-panel {
-  display: none;
-}
-
-.react-tabs__tab-panel--selected {
-  display: block;
 }
